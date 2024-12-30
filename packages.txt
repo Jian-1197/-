@@ -1,2 +1,2 @@
 libreoffice
-fonts-noto-cjk
+ttf-mscorefonts-installer
