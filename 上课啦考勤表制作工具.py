@@ -366,7 +366,7 @@ def process_attendance_files(data, date, year, month, day):
         filtered_data = filtered_data.sort_values(by=["旷课课时", "旷课次数"], ascending=[False, False])
 
         table = doc.add_table(rows=1, cols=6, style="Table Grid")
-        col_width_dict = {0: 1.52, 1: 1.2, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
+        col_width_dict = {0: 1.48, 1: 1.24, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
         row_height = Pt(25)
         
         # 设置列宽
