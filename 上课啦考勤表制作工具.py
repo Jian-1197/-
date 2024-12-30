@@ -12,6 +12,7 @@ from docx import Document
 from docx.shared import Pt, Inches 
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT   # 段落对齐
 from docx.oxml.ns import qn                         # 中文格式
+import subprocess                                   # 用命令行实现docx-to-pdf
 
 # 样式设置变量 (脚本一)
 TITLE_FONT_1 = Font(size=18, bold=True)                                       # 标题加粗, 18号字体
@@ -365,7 +366,7 @@ def process_attendance_files(data, date, year, month, day):
         filtered_data = filtered_data.sort_values(by=["旷课课时", "旷课次数"], ascending=[False, False])
 
         table = doc.add_table(rows=1, cols=6, style="Table Grid")
-        col_width_dict = {0: 1.14, 1: 1.58, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
+        col_width_dict = {0: 1.6, 1: 1.12, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
         row_height = Pt(25)
         
         # 设置列宽
@@ -429,9 +430,32 @@ def process_attendance_files(data, date, year, month, day):
         doc.save(docx_output)
         return docx_output
 
+    def convert_docx_to_pdf(input_file, output_format='pdf',output_dir='.'):
+        
+        
+        # 构建命令字符串，包含输出目录参数
+        command = [
+            'soffice',  # LibreOffice/OpenOffice 的命令行工具
+            '--headless',  # 不显示图形用户界面
+            '--invisible',  # 运行时不可见
+            '--convert-to', output_format,  # 转换格式为目标格式
+            '--outdir', output_dir,  # 指定输出目录
+            input_file  # 输入文件路径
+        ]
+        
+        try:
+            # 使用 subprocess.run 来执行命令
+            result = subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print("转换成功:", result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print("转换失败:", e.stderr.decode())
+
+
+
     # 执行
     create_excel()
-    create_docx()
+    docx_output = create_docx()
+    convert_docx_to_pdf(docx_output,output_dir=f'{output_folder_3}')
 
 # 这些包是压缩和删除文件用的
 import os
