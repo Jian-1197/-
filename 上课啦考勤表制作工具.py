@@ -12,7 +12,6 @@ from docx import Document
 from docx.shared import Pt, Inches 
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT   # 段落对齐
 from docx.oxml.ns import qn                         # 中文格式
-from docx2pdf import convert                        # docx转pdf
 
 # 样式设置变量 (脚本一)
 TITLE_FONT_1 = Font(size=18, bold=True)                                       # 标题加粗, 18号字体
@@ -432,7 +431,7 @@ def process_attendance_files(data, date, year, month, day):
 
     # 执行
     create_excel()
-    docx_output = create_docx()
+    create_docx()
 
 # 这些包是压缩和删除文件用的
 import os
