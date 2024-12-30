@@ -1,2 +1,2 @@
 libreoffice
-fonts-wqy-microhei
+xfonts-wqy
