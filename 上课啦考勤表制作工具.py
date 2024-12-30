@@ -366,7 +366,7 @@ def process_attendance_files(data, date, year, month, day):
         filtered_data = filtered_data.sort_values(by=["旷课课时", "旷课次数"], ascending=[False, False])
 
         table = doc.add_table(rows=1, cols=6, style="Table Grid")
-        col_width_dict = {0: 1.6, 1: 1.12, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
+        col_width_dict = {0: 1.62, 1: 1.10, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
         row_height = Pt(25)
         
         # 设置列宽
@@ -430,15 +430,14 @@ def process_attendance_files(data, date, year, month, day):
         doc.save(docx_output)
         return docx_output
 
-    def convert_docx_to_pdf(input_file, output_format='pdf',output_dir='.'):
-        
+    def convert_docx_to_pdf(input_file, output_dir='.'):
         
         # 构建命令字符串，包含输出目录参数
         command = [
             'soffice',  # LibreOffice/OpenOffice 的命令行工具
             '--headless',  # 不显示图形用户界面
             '--invisible',  # 运行时不可见
-            '--convert-to', output_format,  # 转换格式为目标格式
+            '--convert-to', 'pdf:writer_pdf_Export',  # 转换格式为目标格式
             '--outdir', output_dir,  # 指定输出目录
             input_file  # 输入文件路径
         ]
