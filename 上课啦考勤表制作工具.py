@@ -366,7 +366,7 @@ def process_attendance_files(data, date, year, month, day):
         filtered_data = filtered_data.sort_values(by=["旷课课时", "旷课次数"], ascending=[False, False])
 
         table = doc.add_table(rows=1, cols=6, style="Table Grid")
-        col_width_dict = {0: 1.62, 1: 1.10, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
+        col_width_dict = {0: 1.6, 1: 1.12, 2: 0.7638, 3: 0.7638, 4: 0.7638, 5: 0.7638}
         row_height = Pt(25)
         
         # 设置列宽
@@ -401,7 +401,7 @@ def process_attendance_files(data, date, year, month, day):
                 for paragraph in cell.paragraphs:
                     paragraph.alignment = 1         # 设置单元格文本居中
                     for run in paragraph.runs:
-                        run.font.size = Pt(11)
+                        run.font.size = Pt(10)
 
         # 添加说明
         note_1 = "\n注:\n一、根据学生手册中“浙江师范大学学生违纪处分规定”中第三章第二十七条规定,学生一学期内旷课累计满10学时的, 给予警告处分; 满20学时的, 给予严重警告处分;满30学时的, 给与记过处分; 满40学时的, 给与留校察看处分; 因旷课屡次受到纪律处分并经教育不改的, 可以给予开除学籍处分;\n二、学时计算方法如下: \n(1) 旷课1小节为1学时, 未经请假缺勤1天, 不足5学时按5学时计; 超过5学时的, 按实际学时数计; \n(2) 学生无故迟到或早退达3次, 作旷课1学时计; "
