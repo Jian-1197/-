@@ -1,2 +1,2 @@
 libreoffice
-xfonts-wqy
+fonts-noto-cjk
