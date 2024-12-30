@@ -430,16 +430,9 @@ def process_attendance_files(data, date, year, month, day):
         doc.save(docx_output)
         return docx_output
 
-
-    # 导出为 PDF
-    def create_pdf(docx_path):
-        pdf_output = f"{output_folder_3}/计算机科学与技术学院学生第{date}上课啦系统缺勤通报.pdf"
-        convert(docx_path, pdf_output)
-
     # 执行
     create_excel()
     docx_output = create_docx()
-    create_pdf(docx_output)
 
 # 这些包是压缩和删除文件用的
 import os
